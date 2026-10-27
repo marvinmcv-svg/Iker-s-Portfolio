@@ -4,6 +4,13 @@ import { motion } from "framer-motion"
 import type { Chapter } from "@/lib/portfolio-data"
 import { cn } from "@/lib/utils"
 
+type ChapterImage = Chapter["images"][number]
+
+function aspectFor(img: ChapterImage, portrait: string, landscape: string) {
+  if (img.fullFrame) return "h-auto group-hover:scale-100"
+  return img.orientation === "portrait" ? portrait : landscape
+}
+
 function Figure({
   src,
   alt,
@@ -87,7 +94,7 @@ export function ChapterSection({ chapter, flipped = false }: { chapter: Chapter;
               src={chapter.images[0].src}
               alt={chapter.images[0].alt}
               caption={chapter.images[0].caption}
-              imgClassName={chapter.images[0].orientation === "portrait" ? "aspect-[4/5]" : "aspect-[16/9]"}
+              imgClassName={aspectFor(chapter.images[0], "aspect-[4/5]", "aspect-[16/9]")}
             />
             {chapter.images.length > 1 && (
               <div className="grid grid-cols-2 gap-4">
@@ -97,7 +104,7 @@ export function ChapterSection({ chapter, flipped = false }: { chapter: Chapter;
                     src={img.src}
                     alt={img.alt}
                     caption={img.caption}
-                    imgClassName={img.orientation === "portrait" ? "aspect-[3/4]" : "aspect-[4/3]"}
+                    imgClassName={aspectFor(img, "aspect-[3/4]", "aspect-[4/3]")}
                     className={img.orientation === "landscape" ? "col-span-2" : undefined}
                   />
                 ))}
@@ -111,7 +118,7 @@ export function ChapterSection({ chapter, flipped = false }: { chapter: Chapter;
                     src={img.src}
                     alt={img.alt}
                     caption={img.caption}
-                    imgClassName={img.orientation === "portrait" ? "aspect-[3/4]" : "aspect-[4/3]"}
+                    imgClassName={aspectFor(img, "aspect-[3/4]", "aspect-[4/3]")}
                     className={img.orientation === "landscape" ? "col-span-2" : ""}
                   />
                 ))}

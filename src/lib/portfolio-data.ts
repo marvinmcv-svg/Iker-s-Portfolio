@@ -51,6 +51,8 @@ export interface Chapter {
     alt: string;
     caption: string;
     orientation: "landscape" | "portrait";
+    /** Show the whole image uncropped (e.g. when text is baked into the photo) */
+    fullFrame?: boolean;
   }>;
   stat?: { value: string; label: string };
   video?: { driveId: string; caption: string };
@@ -158,8 +160,9 @@ export const chapters: Chapter[] = [
       {
         src: "/images/community/deporte-por-la-vida.jpg",
         alt: "Large group of students posing together on outdoor steps",
-        caption: "Deporte por la Vida sessions",
+        caption: "Special Olympics",
         orientation: "landscape",
+        fullFrame: true,
       },
       {
         src: "/images/community/posdata-tv.jpg",
@@ -170,8 +173,9 @@ export const chapters: Chapter[] = [
       {
         src: "/images/community/casa-esperanza.jpg",
         alt: "Iker with a teammate holding basketballs outside Casa Esperanza",
-        caption: "Casa Esperanza visits",
+        caption: "Deporte para la vida",
         orientation: "portrait",
+        fullFrame: true,
       },
       {
         src: "/images/community/nhs-speech.jpg",
